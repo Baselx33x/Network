@@ -19,10 +19,17 @@ IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 23000);
 // Set the socket to listen for incoming connection requests with a backlog of 10
 socket.Listen(10);
 
+
+Console.WriteLine("About To Accept incoming connection !");
+
 // Accept an incoming connection (this will block until a connection is established)
-socket.Accept();
+Socket clientSocket = socket.Accept();
+
+Console.WriteLine(clientSocket.ToString() + "Connection Accepted !");
 
 
 
+
+Console.ReadLine();
 
 
