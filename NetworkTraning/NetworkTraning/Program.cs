@@ -1,6 +1,6 @@
 ﻿using System.Net; 
 using System.Net.Sockets;
-
+using System.Text;
 
 
 
@@ -20,12 +20,28 @@ IPEndPoint localEndPoint = new IPEndPoint(ipAddress, 23000);
 socket.Listen(10);
 
 
-Console.WriteLine("About To Accept incoming connection !");
+Console.WriteLine("About To Accept incoming connection !    ");
 
 // Accept an incoming connection (this will block until a connection is established)
 Socket clientSocket = socket.Accept();
 
-Console.WriteLine(clientSocket.ToString() + "Connection Accepted !");
+Console.WriteLine("Connection Accepted !" + clientSocket.RemoteEndPoint.ToString() + " " + clientSocket.LocalEndPoint.ToString());
+
+
+byte[] buffer = new byte[3];
+int bytesReceived = 0;
+
+//while (bytesReceived != buffer.Length)
+//{
+
+//}
+
+bytesReceived = clientSocket.Receive(buffer);
+
+Console.WriteLine("Number of Byters Recived : " + bytesReceived);
+
+Console.WriteLine("Received: " + Encoding.ASCII.GetString(buffer, 0, bytesReceived));
+
 
 
 
