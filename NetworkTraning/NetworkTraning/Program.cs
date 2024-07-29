@@ -31,7 +31,7 @@ Socket ServerSide()
 }
 
 // Method for handling client-side communication via a socket
-void ClientSide(Socket clientSocket)
+void HandlInfo(Socket clientSocket)
 {
     // Buffer to store received data
     byte[] buffer = new byte[128];
@@ -58,7 +58,7 @@ void ClientSide(Socket clientSocket)
 }
 
 
-ClientSide(ServerSide());
+HandlInfo(ServerSide());
 
 
 
