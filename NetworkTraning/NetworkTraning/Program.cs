@@ -31,16 +31,23 @@ Console.WriteLine("Connection Accepted !" + clientSocket.RemoteEndPoint.ToString
 byte[] buffer = new byte[3];
 int bytesReceived = 0;
 
-//while (bytesReceived != buffer.Length)
-//{
+while (true)
+{
+    bytesReceived = clientSocket.Receive(buffer);
 
-//}
+    Console.WriteLine("Number of Byters Recived : " + bytesReceived);
 
-bytesReceived = clientSocket.Receive(buffer);
+    Console.WriteLine("Received: " + Encoding.ASCII.GetString(buffer, 0, bytesReceived));
 
-Console.WriteLine("Number of Byters Recived : " + bytesReceived);
+    if (Encoding.ASCII.GetString(buffer, 0, bytesReceived) == "x")
+    {
+        break;
+    }
 
-Console.WriteLine("Received: " + Encoding.ASCII.GetString(buffer, 0, bytesReceived));
+    clientSocket.Send(buffer, bytesReceived, SocketFlags.None);
+}
+
+
 
 
 
